@@ -174,6 +174,7 @@ public:
 		return true;
 	}
 
+	// Премахва последния елемент
 	bool removeLast()
 	{
 		if(end == NULL)
@@ -181,8 +182,47 @@ public:
 			return false;
 		}
 
-		// else??
+		Node *current = start;
+		// докато current не е предпоследният
+		while (current->next->next != NULL)
+		{
+			current = current->next;
+		}
+
+		// премахваме последния
+		delete current->next;
+		current->next = NULL;
+
+		// последният вече е текущият
+		end = current;
+
+		// всичко точно
+		return true;
 	}
+
+	// Премахва първия елемент
+	bool removeFirst()
+	{
+		if (start == NULL)
+		{
+			return false;
+		}
+
+		// Пазим си го, защото след изтриване
+		// на start ще го загубим
+		Node *newFirst = start->next;
+
+		// трием старт
+		delete start;
+
+		// началото вече е запазения
+		start = newFirst;
+
+		// всичко точно
+		return true;
+	}
+
+	// removeAt()?
 }
 
 int main()
